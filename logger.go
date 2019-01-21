@@ -20,11 +20,11 @@ type Config struct {
 func New(conf Config) (*Logger, error) {
 	var logOutput, logOutputError io.Writer
 	if conf.LogToFile {
-		f1, err := os.Open(conf.LogFile)
+		f1, err := os.OpenFile(conf.LogFile, os.O_RDWR|os.O_CREATE, 0644)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to log file")
 		}
-		f2, err := os.Open(conf.LogErrorFile)
+		f2, err := os.OpenFile(conf.LogErrorFile, os.O_RDWR|os.O_CREATE, 0644)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to log error file")
 
