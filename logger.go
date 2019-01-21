@@ -31,6 +31,9 @@ func New(conf Config) (*Logger, error) {
 		}
 		logOutput = f1
 		logOutputError = f2
+
+		fmt.Printf("Writing log output to file %s\n", conf.LogFile)
+		fmt.Printf("Writing error log output to file %s\n", conf.LogErrorFile)
 	} else {
 		logOutput = os.Stdout
 		logOutputError = os.Stderr
